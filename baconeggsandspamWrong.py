@@ -24,6 +24,7 @@ while(x != 0):
                     if not(str(fooditem) in report): # item is not in report
                         report += "\n" + fooditem + " " + str(key)
                     else:
+                        None
                         #index = report.index(fooditem)
                         #print(index)
 
