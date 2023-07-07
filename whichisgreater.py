@@ -1,8 +1,7 @@
-a = int(input())
-b = int(input())
+a, b = input().split()
 
-if b > a:
-    print(1)
-else:
+if b >= a :
     print(0)
+else:
+    print(1)
 
