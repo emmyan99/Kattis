@@ -28,7 +28,8 @@ while(x != 0):
     listConversion = []
     listConversion = list(result)         #convert tuple to list 
     resultList.append(listConversion)     #add list to resultList
-    
+
+
 
 for list in resultList: #list: [('ham', ['Joe', 'Sue']), ('spam', ['Joe'])]
     if (list):

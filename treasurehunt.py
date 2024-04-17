@@ -1,61 +1,72 @@
+#input line 1: R row, C col (1,200)
+#R lines of input, C letters in each, each letter defines an action
+#starting point at (0,0)
+
+#N
+#indicates a move to the previous row,
+
+#S
+#indicates a move to the next row,
+
+#W
+#indicates a move to the previous column,
+
+#E
+#indicates a move to the next column, and
+
+#T
+#indicates the location of the treasure.
+
+#out of bounds - Out
+#no treasure - print Lost
+#Treasure - print amount of steps
+
 def main():
     row, col = input().split()
     row = int(row)
     col = int(col)
+    count = int(row)
 
-    mapsize = row*col
-    startpoint = [0,0]
+    newpos = [0,0]
     treasurefound = False
     steps = 0
-
-    firstAction = input()
-    act0, act1 = splitActions(firstAction)
-    (newpos, treasurefound, steps) = actionHandler(act0, startpoint, treasurefound, steps)
-    (newpos, treasurefound, steps) = actionHandler(act1, newpos, treasurefound, steps)
+    gameover = False
 
 
-    while((row-1) > 0):
-        actions = input()
-        act0, act1 = splitActions(actions)
-        (newpos, treasurefound, steps) = actionHandler(act0, newpos, treasurefound, steps) 
-        (newpos, treasurefound, steps) = actionHandler(act1, newpos, treasurefound, steps)
-        row = row - 1
+    while(count > 0): 
+        actions = list(input()) # splits actions into a list of chars, col chars long
+        for action in actions:
+            if (action == "T") and not treasurefound:
+                treasurefound = True
+                steps += 1
+            else:
+                if(treasurefound == False):
+                    steps +=1
+                (newpos) = actionHandler(action, newpos)
+                if (newpos[0] > (row-1) or newpos[0] < 0 or newpos[1] > (col-1) or newpos[1] < 0):
+                    gameover = True
+        count -= 1
 
-    if (newpos[0] > row or newpos[0] < 0 or newpos[1] > col or newpos[1] < 0):
+    if gameover:
         print("Out")
-    elif(treasurefound == False):
-        print("Lost")
-    elif (treasurefound == True):
+    elif treasurefound:
         print(steps)
- 
-
-def actionHandler(action, position, bool_, steps):
-    steps = countSteps(steps, bool_)
-    if (action == "T"):
-        bool_ = True
-    elif (action == "N"):
-        position[1] -= 1
-    elif (action == "S"):
-        position[1] += 1
-    elif (action == "W"):
-        position[0] -= 1
-    elif (action == "E"):
-        position[0] += 1
-    return (position, bool_, steps)
-
-
-def countSteps(steps, bool_):
-    if bool_ == False:
-        steps += 1
     else:
-        steps = steps
-    return steps
+        print("Lost")
 
-def splitActions(actions):
-    if len(actions) == 2:
-        act0 = actions[0]
-        act1 = actions[1]
-    return act0, act1
+
+
+def actionHandler(action, position): #(row,col)
+    if (action == "N"):
+        position[0] -= 1
+    elif (action == "S"):
+        position[0] += 1
+    elif (action == "W"):
+        position[1] -= 1
+    elif (action == "E"):
+        position[1] += 1
+    return (position)
+
 
 
 main()

@@ -2,6 +2,7 @@ x = int(input())
 
 wins = 0
 
+
 for y in range(x):
     moves = input()
 

@@ -15,7 +15,8 @@ for j in range((n-1), p, (n-1)):
 
 if (p % (n-1) == 0):
     readingTime += y
-            
+
+
 print(readingTime)
 
 
