@@ -5,9 +5,12 @@ def main():
     while(count < 10):
         testCaseNo = int(input())
         count += 1
+        output = []
+        
         if testCaseNo == 0: break
         else: 
             while(testCaseNo > 0):
+                dict = {}
                 word = input()
                 testCaseNo -= 1
 
@@ -16,17 +19,26 @@ def main():
                 for char in word:
                     if vowels.find(char) > 0:
                         positions.append(index)
+                        #print("vowelfiound")
                     else:
                         pass
+                        print(char)
                     index += 1
-                print(positions)
+                    #print(index)
+                index = 0
 
-                double = 0
+                #print(positions)
+                doubleCount = 0
                 for i in positions:
                     for j in positions:
                         if j - i == 1:
-                            double += 1
-                print(double)
+                            #print(i, j)
+                            doubleCount += 1
+                #print(doubleCount)
+                
+                dict[word] = doubleCount
+                #print(dict)
+
 
                 
 
