@@ -1,6 +1,6 @@
 def main():
     count = 0
-    vowels = ["a","e", "i", "o", "u", "y"]
+    vowels = "aeiouy"
 
     while(count < 10):
         testCaseNo = int(input())
@@ -11,16 +11,25 @@ def main():
                 word = input()
                 testCaseNo -= 1
 
+                index = 0
                 positions = []
-                for vowel in vowels:
-                    positions.append(word.find(vowel))
-                    print(positions)
+                for char in word:
+                    if vowels.find(char) > 0:
+                        positions.append(index)
+                    else:
+                        pass
+                    index += 1
+                print(positions)
 
-                    indexes = []
-                    for value in positions:
-                        if value > 0:
-                            indexes.index(value)
-                    print(indexes)
+                double = 0
+                for i in positions:
+                    for j in positions:
+                        if j - i == 1:
+                            double += 1
+                print(double)
+
+                
+
 
     
                     
