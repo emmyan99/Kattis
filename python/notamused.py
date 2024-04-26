@@ -1,17 +1,36 @@
 import re
 
 def main():
-    inputlogs = input()
-    daycounter = 0
+    lines = []
+    while True:
+        try:
+            line = input()
+            lines.append(line)
+        except EOFError:
+            break
 
-    inputlogs = inputlogs.splitlines()
-    print(inputlogs)
-   # if inputlogs[0] == "OPEN":
-    #    print(inputlogs)
+    #print(lines)
+    loglines = []
+    for line in lines:
+        if line == "OPEN":
+            daylines = []
+            continue
+        if line == "CLOSE":
+            loglines.append(daylines)
+            continue
+        daylines.append(line)
 
-    #input is a number of lines of text, unknown how many, need to figure out how to handle this kind of input
+    for logline in loglines:
+        print(logline)
 
-        
+
+
+
+            #while line != "CLOSE":
+             #   print(line)
+             #   daylines.append(line)
+
+            
 
 #def open():
     #while(True):
