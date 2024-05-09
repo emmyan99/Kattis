@@ -20,10 +20,11 @@ def main():
             continue
         daylines.append(line)
     
-    # print(loglines)
-    details = []
+    # print(daylines)
+    days = []
     name_pattern = r'^(EXIT|ENTER)\s+(\w+)\s+\d{1,3}$'
     for day in loglines:
+        details = []
         for entry in day:
             if entry.find("ENTER") != -1:
                 name = re.match(name_pattern, entry).group(2)
@@ -34,15 +35,22 @@ def main():
                             dict["entrymin"] == entrymin
                 else:
                     newentry = {"name": name, "entrymin": entrymin, "price": 0} #price will be calc later, entrymin until EXIT
+                    print(newentry)
                     details.append(newentry)
 
             elif entry.find("EXIT") != -1:
                 name = re.match(name_pattern, entry).group(2)
                 exitmin = int((entry.partition(name))[2])
-                #must calc price here already?, in case they enter twice
+                for dict in details:
+                    if dict["name"] == name:
+                        # print(dict["name"])
+                        dict["price"] == dict["price"] + ((exitmin - dict["entrymin"])*0.1)
+                        # print(dict["price"] + (exitmin-dict["entrymin"])*0.1)
+                        #last price is wrong
+                        dict["entrymin"] == 0
+        days.append(details)
 
-    for dict in details:
-        print(dict)
+
 
 def find_in_dict(val, list_of_dicts):
     for dict in list_of_dicts:
