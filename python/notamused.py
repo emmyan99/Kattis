@@ -64,10 +64,10 @@ def printLog(dayslog):
     for day in dayslog:
         print("Day ", dayCounter)
         dayCounter += 1
-
         for entry in day:
+
             # print(entry["name"], " $",(f'{entry["price"]:.2f}'))
             print('{} ${}'.format(entry["name"],(f'{entry["price"]:.2f}')))
-
+        print("\n")
 
 main()
